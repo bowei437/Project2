@@ -29,14 +29,23 @@
 #include <vector>
 #include <exception>
 #include <stdio.h>
+#include <typeinfo>
+
+QTextStream qtCout(stdout);
+
+
+using namespace std;
+
 
 typedef quint32 Length;
 
+// Film is the base class of the entire branch of children. 
 class Film
 {
 	public:
-		Film(QString id, QString dir, quint32 LengthF, QDate relDate);
-		Film(QString propList);
+		// Functions that are used to modify and give access to the private held variables
+		Film(QString id, QString title, QString dir, quint32 len, QDate relDate);
+		Film(QStringList propList);
 		virtual QString toString(bool labeled, QString sepchar);
 	private:
 		QString m_FilmID;
