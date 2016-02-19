@@ -24,8 +24,11 @@ Entertainment::Entertainment(QStringList propList)
 	:Film(propList.at(0), propList.at(1), propList.at(2), propList.at(3).toInt(), QDate::fromString(propList.at(4), "yyyy-MM-dd"))
 {
 
-	m_Type = propList.at(5).toInt();
-	m_Rating = propList.at(6).toInt();
+	//m_Type = propList.at(5).toInt();
+	//m_Rating = propList.at(6).toInt();
+
+	FilmTypes m_Type = (FilmTypes)propList.at(5).toInt();
+	MPAARatings m_Rating = (MPAARatings)propList.at(6).toInt();
 
 	qDebug() << "	Debug: Entertainment propList" << endl;
 
@@ -34,15 +37,23 @@ Entertainment::Entertainment(QStringList propList)
 QString Entertainment::toString(bool labeled, QString sepchar)
 {
 	QString retvalStr;
-	if (labeled == true)
-	{
-		
+	// QString top/bottom used to concatante string outputs
+
+	QString top; 
+	QString bottom;
+	if (labeled == true) // sees that output is to be labeled
+	{		
+		top = "Film Types: " + m_Type + sepchar; // overloads + QString operator
+		bottom = "Film Rated: " + m_Rating + sepchar; // adds strings together
 
 	}
-	else if (labeled == false)
+	else if (labeled == false) // if it doesn't want labeled output
 	{
-
+		top = m_Type + sepchar; // overloads + string without labels
+		bottom = m_Rating + sepchar;
 	}
 
+	retvalStr = top + bottom; // final QString concatanation to combine
+	return retvalStr; // returns the final string for printing
 
 }

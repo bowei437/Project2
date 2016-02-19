@@ -31,8 +31,6 @@
 #include <stdio.h>
 #include <typeinfo>
 
-QTextStream qtCout(stdout);
-
 
 using namespace std;
 
