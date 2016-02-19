@@ -30,21 +30,20 @@
 #include <exception>
 #include <stdio.h>
 
-typedef quint64 Length;
+typedef quint32 Length;
 
 class Film
 {
 	public:
-
+		Film(QString id, QString dir, quint32 LengthF, QDate relDate);
+		Film(QString propList);
+		virtual QString toString(bool labeled, QString sepchar);
 	private:
 		QString m_FilmID;
 		QString m_Title;
 		QString m_Director;
 		Length m_FilmLength;
 		QDate m_ReleaseDate;
-
-
-
 };
 
 
