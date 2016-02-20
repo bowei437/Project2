@@ -15,6 +15,7 @@
 class FilmList : public QList<Film*>
 {
 	public:
+		FilmList() {}
 		QString toString();
 		Film* findFilm(QString id);
 		QStringList getID(QString title);

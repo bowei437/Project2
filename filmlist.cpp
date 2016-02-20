@@ -8,9 +8,14 @@
 // *-----------------------------------------------* //
 #include "filmlist.h"
 
+
+
+
 QString FilmList::toString()
 {
 	qDebug() << "	Debug: FilmList toString" << endl;
+	//QTextStream outN(stdout);
+
 	QString retvalStr;
 
 	QString newline = "\n";
@@ -101,23 +106,28 @@ Film* FilmList::findFilm(QString id)
 {
 	qDebug() << "	Debug: FilmList findFilm" << endl;
 	Film* retFilmVal; // variable to return of type class Film
+	//int found = 0;
 
 	//QString t_title; // stores temporary title
 	//QString t_ID; // stores temporary ID
-	for (int i = 0; i < q_list.size(); i++)
+	for (int i = 0; i <= q_list.size(); i++)
 	{
 		//t_title = q_list.at(i)->giveTitle();
 		//t_ID = q_list.at(i)->getID();
 		if(q_list.at(i)->getID() == id)
 		{
-			//qDebug() << "Before assignment found" << endl;
+			qDebug() << "Before assignment found" << endl;
+
+			//found = 1;
 			retFilmVal = q_list.at(i); // gives QList<Film> holding type Film to return value
-			//qDebug() << "Successfully found" << endl;
+			qDebug() << "Successfully found, just before return" << endl;
+			return retFilmVal;
+			
 		}
 
 	}
 
-	return retFilmVal;
+	return 0;
 }
 
 void FilmList::addFilm(Film* film)
