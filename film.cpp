@@ -11,16 +11,57 @@
 // Constructor with Parameters
 Film::Film(QString id, QString title, QString dir, quint32 len, QDate relDate)
 {
+	qDebug() << "	Debug: Film Constructor" << endl;
+	// default constructor operations
 	m_FilmID = id;
 	m_Title = title;
 	m_Director = dir;
 	m_FilmLength = len;
 	m_ReleaseDate = relDate;
-	qDebug() << "	Debug: Film Constructor" << endl;
+
+	qDebug() << "Output of Film Constructor is: " << m_FilmID << m_Title << m_Director << m_FilmLength << m_ReleaseDate << endl;
+
+	
 }
 
-Film::Film(QStringList propList)
+QStringList Film::giveAll() const
 {
+	qDebug() << "	Debug: Film giveAll" << endl;
+
+	// uses a temporary stringlist to store all private variables into locations on list
+	// locations are always set following same pattern
+	// used to return a stringlist with everything in it 
+	const QStringList tempList;
+	QString convert_num;
+	QString convert_date;
+
+	// Qstring convert_num/convert/date used to convert private vars to QString 
+	convert_num = QString::number(m_FilmLength); // converts filmlength to base10 string output	
+	convert_date = m_ReleaseDate.toString("yyyy-MM-dd");
+	/*
+	tempList.at(0) = m_FilmID;
+	tempList.at(1) = m_Title;
+	tempList.at(2) = m_Director;
+	tempList.at(3) = convert_num;
+	tempList.at(4) = convert_date;
+	*/
+	
+	/*
+	tempList.at(0)->m_FilmID;
+	tempList.at(1)->m_Title;
+	tempList.at(2)->m_Director;
+	tempList.at(3)->convert_num;
+	tempList.at(4)->convert_date;
+	*/
+	
+	
+	return tempList;
+}
+
+Film::Film(QStringList propList) 
+{
+	qDebug() << "	Debug: Film propList constructor" << endl;
+
 	quint32 len_convert = propList.at(3).toInt();
 	QDate date_convert = QDate::fromString(propList.at(4), "yyyy-MM-dd");
 
@@ -29,12 +70,16 @@ Film::Film(QStringList propList)
 	m_Director = propList.at(2);
 	m_FilmLength = len_convert;
 	m_ReleaseDate = date_convert;
-	qDebug() << "	Debug: Film propList" << endl;
+	
+
+	qDebug() << "Output of Film propList is: " << m_FilmID << m_Title << m_Director << m_FilmLength << m_ReleaseDate << endl;
 
 }
 
 QString Film::toString(bool labeled, QString sepchar)
 {
+	qDebug() << "	Debug: Film toString" << endl;
+
 	QString retvalStr;
 	// QString top/bottom used to concatante string outputs
 	QString top; 
@@ -64,4 +109,18 @@ QString Film::toString(bool labeled, QString sepchar)
 	retvalStr = top + bottom; // final QString concatanation to combine
 	return retvalStr; // returns the final string for printing
 
+}
+
+QString Film::giveTitle()
+{
+	qDebug() << "	Debug: Film giveTitle" << endl;
+
+	return m_Title;
+}
+
+QString Film::giveID()
+{
+	qDebug() << "	Debug: Film giveID" << endl;
+
+	return m_FilmID;
 }

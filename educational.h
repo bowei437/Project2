@@ -12,7 +12,7 @@
 
 #include "film.h"
 
-enum Grade {First, Second, Third, Fourth, Fifth};
+enum Grade {First=1, Second=2, Third=3, Fourth=4, Fifth=5};
 
 class Educational : public Film
 {

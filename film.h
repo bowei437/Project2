@@ -10,6 +10,7 @@
 #ifndef FILM_H
 #define FILM_H
 
+#include <QCoreApplication>
 #include <QDate>
 #include <QDateTime>
 #include <QFile>
@@ -21,6 +22,7 @@
 #include <QLocale>
 #include <QtAlgorithms>
 #include <QChar>
+#include <QVector>
 
 #include <iostream>
 #include <fstream>
@@ -44,6 +46,9 @@ class Film
 		// Functions that are used to modify and give access to the private held variables
 		Film(QString id, QString title, QString dir, quint32 len, QDate relDate);
 		Film(QStringList propList);
+		QString giveTitle();
+		QString giveID();
+		QStringList giveAll() const;
 		virtual QString toString(bool labeled, QString sepchar);
 	private:
 		QString m_FilmID;
@@ -52,6 +57,7 @@ class Film
 		Length m_FilmLength;
 		QDate m_ReleaseDate;
 };
+
 
 
 #endif // FILM_H

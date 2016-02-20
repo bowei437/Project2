@@ -12,8 +12,8 @@
 
 #include "film.h"
 
-enum FilmTypes {Action, Comedy, Scifi};
-enum MPAARatings {G, PG, PG13, R};
+enum FilmTypes {Action=1, Comedy=2, Scifi=3, Horror=4};
+enum MPAARatings {G=1, PG=2, PG13=3, R=4};
 
 class Entertainment : public Film
 {

@@ -13,28 +13,32 @@
 Educational::Educational(QString id, QString title, QString dir, quint32 len, QDate relDate, QString subject, Grade grade)
 	:Film(id, title, dir, len, relDate)
 {
+	qDebug() << "	Debug: Educational Constructor" << endl;
 	m_Subject = subject;
 	m_GradeLevel = grade;
 
 
-	qDebug() << "	Debug: Educational Constructor" << endl;
+	
+	qDebug() << "Output of Educational Constructor is: " << m_Subject << m_GradeLevel << endl;
 }
 
 Educational::Educational(QStringList propList)
 	:Film(propList.at(0), propList.at(1), propList.at(2), propList.at(3).toInt(), QDate::fromString(propList.at(4), "yyyy-MM-dd"))
 {
-	
+	qDebug() << "	Debug: Educational propList" << endl;
 	m_Subject = propList.at(5);
 	int conv_cast = propList.at(6).toInt();
 	Grade m_GradeLevel = (Grade)conv_cast;
 
 
-	qDebug() << "	Debug: Educational propList" << endl;
+	
+	qDebug() << "Output of Educational propList is: " << m_Subject << m_GradeLevel << endl;
 
 }
 
 QString Educational::toString(bool labeled, QString sepchar)
 {
+	qDebug() << "	Debug: Educational toString" << endl;
 	QString retvalStr;
 	// QString top/bottom used to concatante string outputs
 
