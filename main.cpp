@@ -54,8 +54,6 @@ void addfilm(void)
 	quint32 f_len;
 	QDate f_relDate;
 
-	//QString temp variable to push into filmList::checkvalid function to make sure
-	//FilmList listfilm;
 	QString empty; // used soley as an empty QString
 	QString tempCheck;
 	empty.clear();
@@ -63,6 +61,8 @@ void addfilm(void)
 
 
 	outS << "\n" << "Please input a unique ID# for this film: " << flush;
+	f_id = inS.readLine();
+	/*
 	tempCheck = inS.readLine();
 	if ((listfilm.checkValid(tempCheck)) == 1 )
 	{
@@ -73,6 +73,7 @@ void addfilm(void)
 	{
 		f_id = tempCheck;
 	}
+	*/
 	outS << "\n" << "Please input the film title: " << flush;
 	f_title = inS.readLine();
 
@@ -80,6 +81,8 @@ void addfilm(void)
 	f_dir = inS.readLine();
 
 	outS << "\n" << "Please input the film's length in minutes: " << flush;
+	f_len = inS.readLine().toInt();
+	/*
 	tempCheck = inS.readLine();
 	if ((listfilm.checkValid(empty,empty,empty,tempCheck)) == 2 )
 	{
@@ -90,8 +93,11 @@ void addfilm(void)
 	{
 		f_len = tempCheck.toInt();// reads in film length as QString and converts to Int
 	}
+	*/
 
 	outS << "\n" << "Please input the film's original release date in yyyy-MM-dd: " << flush;
+	f_relDate = QDate::fromString(inS.readLine(), "yyyy-MM-dd");
+	/*
 	tempCheck = inS.readLine();
 	if ((listfilm.checkValid(empty,empty,empty,empty,tempCheck)) == 3 )
 	{
@@ -102,6 +108,7 @@ void addfilm(void)
 	{
 		f_relDate = QDate::fromString(tempCheck, "yyyy-MM-dd");
 	}
+	*/
 	//qDebug() << "Output of add function is: " << f_id << f_title << f_dir << f_len << f_relDate << flush;
 	int filmchoice;
 
@@ -190,6 +197,7 @@ void addfilm(void)
 		qDebug() << "Output of add entertainment function is: " << f_id << f_title << f_dir << f_len << f_relDate << en_type <<en_rtng << flush;
 
 	}
+	return;
 
 
 }
@@ -202,6 +210,12 @@ void locfindfilm()
 
 	outS << "Please input the ID of the film you want to find: " << flush;
 	locID = inS.readLine();
+
+	//Film *locfoundfilm;
+	//listfilm.findFilm(locID);
+
+
+	outS << "local found film is: " << listfilm.findFilm(locID)->toString(true,"\n") << endl;
 
 
 

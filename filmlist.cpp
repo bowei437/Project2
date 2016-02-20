@@ -26,26 +26,7 @@ QString FilmList::toString()
 	return retvalStr;
 }
 
-Film* FilmList::findFilm(QString id)
-{
-	qDebug() << "	Debug: FilmList findFilm" << endl;
-	Film* retFilmVal; // variable to return of type class Film
 
-	QString t_title; // stores temporary title
-	QString t_ID; // stores temporary ID
-	for (int i = 0; i < q_list.size(); i++)
-	{
-		t_title = q_list.at(i)->giveTitle();
-		t_ID = q_list.at(i)->giveID();
-		if(id == t_ID)
-		{
-			retFilmVal = q_list.at(i); // gives QList<Film> holding type Film to return value
-		}
-
-	}
-
-	return retFilmVal;
-}
 
 int FilmList::checkValid(QString c_id, QString c_title, QString c_dir, QString c_len, QString c_relDate)
 {
@@ -57,7 +38,7 @@ int FilmList::checkValid(QString c_id, QString c_title, QString c_dir, QString c
 		//qDebug() << "Running ID Check" << flush;
 		for (int i = 0; i < q_list.size(); i++)
 		{
-			if(q_list.at(i)->giveID() == c_id)
+			if(q_list.at(i)->getID() == c_id)
 			{
 				//qDebug() << "ID already exists" << flush;
 				return 1;
@@ -103,8 +84,8 @@ QStringList FilmList::getID(QString title)
 
 	for (int i = 0; i < q_list.size(); i++)
 	{
-		t_title = q_list.at(i)->giveTitle();
-		t_ID = q_list.at(i)->giveID();
+		//t_title = q_list.at(i)->giveTitle();
+		//t_ID = q_list.at(i)->getID();
 		if(t_title == title)
 		{
 			retIDVal.append(t_ID); // add temporary ID number to be stored
@@ -116,9 +97,34 @@ QStringList FilmList::getID(QString title)
 
 }
 
+Film* FilmList::findFilm(QString id)
+{
+	qDebug() << "	Debug: FilmList findFilm" << endl;
+	Film* retFilmVal; // variable to return of type class Film
+
+	//QString t_title; // stores temporary title
+	//QString t_ID; // stores temporary ID
+	for (int i = 0; i < q_list.size(); i++)
+	{
+		//t_title = q_list.at(i)->giveTitle();
+		//t_ID = q_list.at(i)->getID();
+		if(q_list.at(i)->getID() == id)
+		{
+			//qDebug() << "Before assignment found" << endl;
+			retFilmVal = q_list.at(i); // gives QList<Film> holding type Film to return value
+			//qDebug() << "Successfully found" << endl;
+		}
+
+	}
+
+	return retFilmVal;
+}
+
 void FilmList::addFilm(Film* film)
 {
+	/*
 	qDebug() << "	Debug: FilmList addFilm" << endl;
+	
 	if (q_list.contains(film))
 	{
 		qDebug() << film << "already in q_list" << endl;
@@ -129,6 +135,12 @@ void FilmList::addFilm(Film* film)
 		q_list.append(film); // add film to list 
 		qDebug() << film << "is now added" << endl;
 	}
+	*/
+
+	qDebug() << "   DEBUG: FilmList addFilm" << endl;
+    if(!q_list.contains(film))
+        q_list.append(film);
+    qDebug() << film << "is now added" << endl;
 
 }
 
@@ -138,7 +150,7 @@ void FilmList::removeFilm(QString filmID)
 	QString tempID;
 	for (int i = 0; i < q_list.size(); i++)
 	{
-		tempID = q_list.at(i)->giveID();
+		tempID = q_list.at(i)->getID();
 
 		if (tempID == filmID)
 		{

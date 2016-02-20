@@ -47,7 +47,7 @@ class Film
 		Film(QString id, QString title, QString dir, quint32 len, QDate relDate);
 		Film(QStringList propList);
 		QString giveTitle();
-		QString giveID();
+		QString getID();
 		QStringList giveAll() const;
 		virtual QString toString(bool labeled, QString sepchar);
 	private:
