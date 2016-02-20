@@ -698,8 +698,7 @@ filmlist.o: filmlist.cpp filmlist.h \
 		/usr/include/qt5/QtCore/QVector
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o filmlist.o filmlist.cpp
 
-main.o: main.cpp film.h \
-		/usr/include/qt5/QtCore/QCoreApplication \
+main.o: main.cpp /usr/include/qt5/QtCore/QCoreApplication \
 		/usr/include/qt5/QtCore/qcoreapplication.h \
 		/usr/include/qt5/QtCore/qglobal.h \
 		/usr/include/qt5/QtCore/qconfig.h \
@@ -758,35 +757,36 @@ main.o: main.cpp film.h \
 		/usr/include/qt5/QtCore/qisenum.h \
 		/usr/include/qt5/QtCore/qobject_impl.h \
 		/usr/include/qt5/QtCore/qeventloop.h \
-		/usr/include/qt5/QtCore/QDate \
-		/usr/include/qt5/QtCore/qdatetime.h \
-		/usr/include/qt5/QtCore/qsharedpointer.h \
-		/usr/include/qt5/QtCore/qshareddata.h \
-		/usr/include/qt5/QtCore/qsharedpointer_impl.h \
-		/usr/include/qt5/QtCore/qhash.h \
-		/usr/include/qt5/QtCore/qpair.h \
-		/usr/include/qt5/QtCore/QDateTime \
-		/usr/include/qt5/QtCore/QFile \
-		/usr/include/qt5/QtCore/qfile.h \
-		/usr/include/qt5/QtCore/qfiledevice.h \
-		/usr/include/qt5/QtCore/qiodevice.h \
-		/usr/include/qt5/QtCore/QString \
-		/usr/include/qt5/QtCore/QStringList \
-		/usr/include/qt5/QtCore/qstringlist.h \
-		/usr/include/qt5/QtCore/qdatastream.h \
-		/usr/include/qt5/QtCore/qregexp.h \
-		/usr/include/qt5/QtCore/qstringmatcher.h \
-		/usr/include/qt5/QtCore/QList \
 		/usr/include/qt5/QtCore/QTextStream \
 		/usr/include/qt5/QtCore/qtextstream.h \
+		/usr/include/qt5/QtCore/qiodevice.h \
 		/usr/include/qt5/QtCore/qlocale.h \
 		/usr/include/qt5/QtCore/qvariant.h \
 		/usr/include/qt5/QtCore/qmap.h \
+		/usr/include/qt5/QtCore/qpair.h \
 		/usr/include/qt5/QtCore/qdebug.h \
+		/usr/include/qt5/QtCore/qhash.h \
 		/usr/include/qt5/QtCore/qvector.h \
 		/usr/include/qt5/QtCore/qpoint.h \
 		/usr/include/qt5/QtCore/qset.h \
 		/usr/include/qt5/QtCore/qcontiguouscache.h \
+		/usr/include/qt5/QtCore/qstringlist.h \
+		/usr/include/qt5/QtCore/qdatastream.h \
+		/usr/include/qt5/QtCore/qregexp.h \
+		/usr/include/qt5/QtCore/qstringmatcher.h \
+		/usr/include/qt5/QtCore/qshareddata.h \
+		film.h \
+		/usr/include/qt5/QtCore/QDate \
+		/usr/include/qt5/QtCore/qdatetime.h \
+		/usr/include/qt5/QtCore/qsharedpointer.h \
+		/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		/usr/include/qt5/QtCore/QDateTime \
+		/usr/include/qt5/QtCore/QFile \
+		/usr/include/qt5/QtCore/qfile.h \
+		/usr/include/qt5/QtCore/qfiledevice.h \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/QStringList \
+		/usr/include/qt5/QtCore/QList \
 		/usr/include/qt5/QtCore/QDebug \
 		/usr/include/qt5/QtCore/QLocale \
 		/usr/include/qt5/QtCore/QtAlgorithms \
