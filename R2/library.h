@@ -1,9 +1,37 @@
+////////////////////////////////////////////////////////
+// ECE 3574, Homework 2 R2, Bowei Zhao
+//
+// File name: library.h
+// Description: library header file
+// Date: 2/17/2016
+//
+// *-----------------------------------------------* //
 #ifndef LIBRARY_H_                                                                           
 #define LIBRARY_H_                                                                           
-                                                                                             
+
+#include <QCoreApplication>                                                                                             
 #include <QList>   
 #include <QString>
 #include <QStringList>
+#include <QDebug>
+#include <QTextStream>
+#include <QFile>
+#include <QDate>
+#include <QLocale>
+
+#include <iostream>
+#include <fstream>
+#include <algorithm> 
+#include <string>
+#include <vector>
+#include <exception>
+#include <stdio.h>
+#include <typeinfo>
+
+
+using namespace std;
+
+
 
 //start id=refbaseclassdef                                                                                           
 class RefItem {                                                                              

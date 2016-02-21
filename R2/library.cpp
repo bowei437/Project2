@@ -1,5 +1,13 @@
-#include <QStringList>
-#include <QDebug>
+////////////////////////////////////////////////////////
+// ECE 3574, Homework 2 R2, Bowei Zhao
+//
+// File name: library.cpp
+// Description: library implementation file
+// Date: 2/17/2016
+//
+// *-----------------------------------------------* //
+
+
 #include "library.h"
 
 //Note: RefItem constructor is protected.

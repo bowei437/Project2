@@ -1,7 +1,17 @@
+////////////////////////////////////////////////////////
+// ECE 3574, Homework 2 R2, Bowei Zhao
+//
+// File name: libraryClient-v2.cpp
+// Description: library client v2 implementation file
+// Date: 2/17/2016
+//
+// *-----------------------------------------------* //
+
 #include "libraryui.h"
 #include "library.h"
 
 bool saved(false);
+
 
 int main() {
    Library lib;

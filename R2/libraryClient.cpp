@@ -1,8 +1,12 @@
-#include <QStringList>
-#include <QTextStream>
-#include <QFile>
-#include <QDate>
-#include <QDebug>
+////////////////////////////////////////////////////////
+// ECE 3574, Homework 2 R2, Bowei Zhao
+//
+// File name: libraryClient.cpp
+// Description: library client implementation file
+// Date: 2/17/2016
+//
+// *-----------------------------------------------* //
+
 #include "library.h"
 
 //start id=lclenums
