@@ -35,7 +35,7 @@ Film::Film(QString id, QString title, QString dir, quint32 len, QDate relDate)
 
 QStringList Film::giveAll() const
 {
-	qDebug() << "	Debug: Film giveAll" << endl;
+	//qDebug() << "	Debug: Film giveAll" << endl;
 
 	// uses a temporary stringlist to store all private variables into locations on list
 	// locations are always set following same pattern
@@ -47,31 +47,14 @@ QStringList Film::giveAll() const
 	// Qstring convert_num/convert/date used to convert private vars to QString 
 	convert_num = QString::number(m_FilmLength); // converts filmlength to base10 string output	
 	convert_date = m_ReleaseDate.toString("yyyy-MM-dd");
-	/*
-	tempList.at(0) = m_FilmID;
-	tempList.at(1) = m_Title;
-	tempList.at(2) = m_Director;
-	tempList.at(3) = convert_num;
-	tempList.at(4) = convert_date;
-	*/
-	
-	/*
-	tempList.at(0)->m_FilmID;
-	tempList.at(1)->m_Title;
-	tempList.at(2)->m_Director;
-	tempList.at(3)->convert_num;
-	tempList.at(4)->convert_date;
-	*/
-	
-	
+
 	return tempList;
 }
 
 Film::Film(QStringList propList) 
 {
-	qDebug() << "	Debug: Film propList constructor" << endl;
+	//qDebug() << "	Debug: Film propList constructor" << endl;
 
-	
 	QDate date_convert = QDate::fromString(propList.at(4), "yyyy-MM-dd");
 
 	m_FilmID = propList.at(0);
@@ -81,16 +64,31 @@ Film::Film(QStringList propList)
 	m_FilmLength = len_convert;
 	m_ReleaseDate = date_convert;
 	
-
-	qDebug() << "Output of Film propList is: " << m_FilmID << m_Title << m_Director << m_FilmLength << m_ReleaseDate << endl;
+	//qDebug() << "Output of Film propList is: " << m_FilmID << m_Title << m_Director << m_FilmLength << m_ReleaseDate << endl;
 
 }
 
 QString Film::toString(bool labeled, QString sepchar)
 {
+	
 	qDebug() << "	Debug: Film toString" << endl;
 	/*
-
+	if (labeled) {
+        return
+        QString("%1%2%3%4%5%6%7%8%9%10%11%12").arg("Film").arg(sepchar).arg(m_FilmID).arg(sepchar).arg(m_Title)
+                                              .arg(sepchar).arg(m_Director).arg(sepchar)
+                                              .arg(m_FilmLength).arg(sepchar).arg(m_ReleaseDate.toString("yyyy-MM-dd"))
+                                              .arg(sepchar);
+    }
+    else {
+        return
+        QString("%1%2%3%4%5%6%7%8%9%10").arg(m_FilmID).arg(sepchar).arg(m_Title)
+                                        .arg(sepchar).arg(m_Director).arg(sepchar)
+                                        .arg(m_FilmLength).arg(sepchar).arg(m_ReleaseDate.toString("yyyy-MM-dd"))
+                                        .arg(sepchar);
+    }
+	*/
+	
 	QString retvalStr;
 	// QString top/bottom used to concatante string outputs
 	QString top; 
@@ -112,14 +110,15 @@ QString Film::toString(bool labeled, QString sepchar)
 	else if (labeled == false) // if it doesn't want labeled output
 	{
 		top = m_FilmID + sepchar + m_Title + sepchar + m_Director + sepchar; // overloads + QString operator
-
 		bottom = convert_num + sepchar + convert_date + sepchar; // adds strings together
 
 	}
 
 	retvalStr = top + bottom; // final QString concatanation to combine
 	return retvalStr; // returns the final string for printing
-	*/
+	
+	
+	/*
 	QString retString;
     if(labeled) {
         retString = "ID: " + m_FilmID + sepchar
@@ -137,13 +136,13 @@ QString Film::toString(bool labeled, QString sepchar)
     }
 
     return retString;
+    */
 
 }
 
 QString Film::giveTitle()
 {
 	qDebug() << "	Debug: Film giveTitle" << endl;
-
 	return m_Title;
 }
 
@@ -152,11 +151,3 @@ QString Film::getID() {
     return m_FilmID;
 }
 
-/*
-QString Film::getID()
-{
-	qDebug() << "	Debug: Film getID" << endl;
-
-	return m_FilmID;
-}
-*/

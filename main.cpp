@@ -16,7 +16,7 @@
 
 // Global input and output. Used because example client does this. 
 // enum choices used for menu option selection
-FilmList listfilm; // here
+
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -28,14 +28,16 @@ int main(int argc, char *argv[])
     QTextStream inS(stdin);
     QTextStream errS(stderr); // error stream for standard error exception
     
-
     int sel_choice;
     
     QString f_id, f_title, f_dir;
     quint32 f_len;
 
     QDate f_relDate;
-    QString lookforID;
+    QString lookforID, lookfortitle;
+    FilmList listfilm; // here
+    
+
 
         // Initializes variables to store Educational Class objects
     QString ed_subject;
@@ -47,6 +49,7 @@ int main(int argc, char *argv[])
 
     // Initializes variables to store Entertainment Class objects
     FilmTypes en_type;
+
     MPAARatings en_rtng;
 
     while(1) {
@@ -54,7 +57,8 @@ int main(int argc, char *argv[])
              << REMOVE_FILM << " - Remove a film.\n"
              << GET_ID << " - Get Film ID by searching Title.\n"
              << FIND_FILM << " - Get Film Title by searching ID.\n"
-             << LIST << " - LIST ALL .\n"
+             << LIST << " - List all Films .\n"
+              << QUIT << " - Quit Program .\n"
              << "Your choice(#): " << flush;
         sel_choice = inS.readLine().toInt();
         select = static_cast<menuChoice>(sel_choice);
@@ -107,6 +111,8 @@ int main(int argc, char *argv[])
 
             outS << "Your choice(#): " << flush;
             filmchoice = inS.readLine().toInt();
+            Film* newFilm;
+            
 
             while ((filmchoice < 1) || (filmchoice > 3)) // if the choice from user is not valid, run code
             {
@@ -117,8 +123,8 @@ int main(int argc, char *argv[])
 
             if (filmchoice == 1)
             {
-                Film *newFilm = new Film(f_id, f_title, f_dir, f_len, f_relDate);
-                listfilm.addFilm(newFilm);
+                newFilm = new Film(f_id, f_title, f_dir, f_len, f_relDate);
+                
             }
             else if (filmchoice == 2)
             {
@@ -137,9 +143,9 @@ int main(int argc, char *argv[])
 
                 ed_grade = static_cast<Grade>(tempInt);
 
-                Educational newEdfilm(f_id, f_title, f_dir, f_len, f_relDate, ed_subject, ed_grade);
-                listfilm.addFilm(&newEdfilm);
-                qDebug() << "Output of add educational function is: " << f_id << f_title << f_dir << f_len << f_relDate << ed_subject <<ed_grade << flush;
+                newFilm = new Educational(f_id, f_title, f_dir, f_len, f_relDate, ed_subject, ed_grade);
+                //listfilm.addFilm(newFilm);
+               // qDebug() << "Output of add educational function is: " << f_id << f_title << f_dir << f_len << f_relDate << ed_subject <<ed_grade << flush;
 
 
             }
@@ -166,43 +172,61 @@ int main(int argc, char *argv[])
                 }
                 en_rtng = static_cast<MPAARatings>(tempInt2);
 
-                Entertainment newEnfilm(f_id, f_title, f_dir, f_len, f_relDate, en_type, en_rtng);
-                listfilm.addFilm(&newEnfilm);
-                qDebug() << "Output of add entertainment function is: " << f_id << f_title << f_dir << f_len << f_relDate << en_type <<en_rtng << flush;
-
+                newFilm = new Entertainment(f_id, f_title, f_dir, f_len, f_relDate, en_type, en_rtng);
+                //listfilm.addFilm(newFilm);
+                //qDebug() << "Output of add entertainment function is: " << f_id << f_title << f_dir << f_len << f_relDate << en_type <<en_rtng << flush;
 
             }
-            outS << "Printing all films" << endl;
-            outS << listfilm.toString() << endl;
-
-
-
-
+            listfilm.addFilm(newFilm);
         }
             break;
         case REMOVE_FILM: {
+            outS << "\n" <<"Please input the ID of the film you wish to remove: " << flush;
+            QString trashfilm; // qstring to store ID to delete film.
+            trashfilm = inS.readLine();
+            listfilm.removeFilm(trashfilm); // call function to remove the film. 
 
         }
             break;
         case GET_ID: {
+            outS << "\n" << "Enter the Films Title to get ID#:" << flush;
+            QStringList searchList;
+            lookfortitle = inS.readLine();
+
+            searchList = listfilm.getID(lookfortitle);
+            for (int i=0; i< searchList.size(); i++)
+            {
+                outS << "\n" << "The search " << lookfortitle << " has ID# of " <<
+                searchList.at(i) << endl;
+            }
 
         }
             break;
         case FIND_FILM: {
-            outS << "Enter the Films ID to get details:" << endl;
-            lookforID = inS.readLine();
-            outS << listfilm.findFilm(lookforID)->toString(true,"\n");
+            outS << "\n" << "Enter the Films ID# to get Title Name:" << flush;
 
+            lookforID = inS.readLine();
+            outS << listfilm.findFilm(lookforID)->toString(true, "\n");
+            //Film* newFilm = listfilm.findFilm(lookforID);
+            //QString fin_out = newFilm->toString(true, "\n");
+            //outS << fin_out <<endl;
+            
         }
             break;
         case LIST: {
-
-
+            outS << "Printing all films" << endl;
+            outS << listfilm.toString() << endl;
 
         }
             break;
+        case QUIT: {
+            outS << "Exiting Program" << endl;
+            exit(0);
+
+        }    
+            break;
         default: {
-            outS << "Bad menu input. Exiting." << endl;
+            outS << "System Error, Program Exiting" << endl;
             exit(0);
         }
         }

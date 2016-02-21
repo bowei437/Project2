@@ -23,7 +23,7 @@ QString FilmList::toString()
 
 	for (int i = 0; i < q_list.size(); i++)
 	{
-		retvalStr += q_list.at(i)->toString(false, brackchar) + newline; // calls each Film's toString method
+		retvalStr += q_list.at(i)->toString(true, "[::]") + newline; // calls each Film's toString method
 		// uses QString += overloaded operator to add strings together. Uses 'this -> to point to the pointers
 		// actual toString method giving it false for sepchar with a bracket character.
 	}
@@ -35,7 +35,7 @@ QString FilmList::toString()
 
 int FilmList::checkValid(QString c_id, QString c_title, QString c_dir, QString c_len, QString c_relDate)
 {
-	qDebug() << "\n" <<"	Debug: FilmList checkValid";
+	//qDebug() << "\n" <<"	Debug: FilmList checkValid";
 	//qDebug() << "Passed in: " << c_id << c_title << c_dir << c_len << c_relDate << endl;
 
 	if(!(c_id.isEmpty()))
@@ -80,31 +80,29 @@ int FilmList::checkValid(QString c_id, QString c_title, QString c_dir, QString c
 
 QStringList FilmList::getID(QString title)
 {
-	qDebug() << "	Debug: FilmList getID" << endl;
+	//qDebug() << "	Debug: FilmList getID" << endl;
 	QStringList retIDVal; // variable to finally return
 
 	// temporary holding variables to store
 	QString t_title; // stores temporary title
 	QString t_ID; // stores temporary ID
-
+	
 	for (int i = 0; i < q_list.size(); i++)
 	{
-		//t_title = q_list.at(i)->giveTitle();
-		//t_ID = q_list.at(i)->getID();
+		t_title = q_list.at(i)->giveTitle();
+		t_ID = q_list.at(i)->getID();
 		if(t_title == title)
 		{
 			retIDVal.append(t_ID); // add temporary ID number to be stored
 		}
 	}
+	
 	return retIDVal;
-
-
-
 }
 
 Film* FilmList::findFilm(QString id)
 {
-	qDebug() << "	Debug: FilmList findFilm" << endl;
+	//qDebug() << "	Debug: FilmList findFilm" << endl;
 	Film* retFilmVal; // variable to return of type class Film
 	//int found = 0;
 
@@ -116,11 +114,11 @@ Film* FilmList::findFilm(QString id)
 		//t_ID = q_list.at(i)->getID();
 		if(q_list.at(i)->getID() == id)
 		{
-			qDebug() << "Before assignment found" << endl;
+			//qDebug() << "Before assignment found" << endl;
 
 			//found = 1;
 			retFilmVal = q_list.at(i); // gives QList<Film> holding type Film to return value
-			qDebug() << "Successfully found, just before return" << endl;
+			//qDebug() << "Successfully found, just before return" << endl;
 			return retFilmVal;
 			
 		}
@@ -147,16 +145,16 @@ void FilmList::addFilm(Film* film)
 	}
 	*/
 
-	qDebug() << "   DEBUG: FilmList addFilm" << endl;
+	//qDebug() << "   DEBUG: FilmList addFilm" << endl;
     if(!q_list.contains(film))
         q_list.append(film);
-    qDebug() << film << "is now added" << endl;
+    //qDebug() << film << "is now added" << endl;
 
 }
 
 void FilmList::removeFilm(QString filmID)
 {
-	qDebug() << "	Debug: FilmList removeFilm" << endl;
+	//qDebug() << "	Debug: FilmList removeFilm" << endl;
 	QString tempID;
 	for (int i = 0; i < q_list.size(); i++)
 	{

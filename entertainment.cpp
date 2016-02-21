@@ -10,6 +10,12 @@
 #include "entertainment.h"
 
 //Constructor with Parameters
+Entertainment::Entertainment(QString id, QString title, QString dir, quint32 len, QDate relDate, FilmTypes type, MPAARatings rtng) :
+    Film::Film(id,title,dir,len,relDate),
+    m_Type(type),
+    m_Rating(rtng)
+{}
+/*
 Entertainment::Entertainment(QString id, QString title, QString dir, quint32 len, QDate relDate, FilmTypes type, MPAARatings rtng)
 	:Film(id, title, dir, len, relDate) // using initialization list
 {
@@ -21,6 +27,7 @@ Entertainment::Entertainment(QString id, QString title, QString dir, quint32 len
 	qDebug() << "Output of Entertainment Constructor is: " << m_Type << m_Rating << endl;
 	
 }
+*/
 
 Entertainment::Entertainment(QStringList propList)
 	:Film(propList.at(0), propList.at(1), propList.at(2), propList.at(3).toInt(), QDate::fromString(propList.at(4), "yyyy-MM-dd"))
@@ -39,7 +46,22 @@ Entertainment::Entertainment(QStringList propList)
 QString Entertainment::toString(bool labeled, QString sepchar)
 {
 	qDebug() << "	Debug: Entertainment toString" << endl;
-
+	
+	if (labeled == true)
+	{
+        return
+        QString("%1%2%3%4%5%6%7%8").arg("Entertainment").arg(sepchar).arg(Film::toString(labeled, sepchar))
+                                   .arg(sepchar).arg(m_Rating).arg(sepchar).arg(m_Type).arg(sepchar);
+    }
+    else 
+    {
+        return
+        QString("%1%2%3%4%5%6").arg(Film::toString(labeled, sepchar))
+                               .arg(sepchar).arg(m_Rating).arg(sepchar)
+                               .arg(m_Type).arg(sepchar);
+    }
+    
+	/*
 	QString retvalStr;
 	// QString top/bottom used to concatante string outputs
 
@@ -59,5 +81,7 @@ QString Entertainment::toString(bool labeled, QString sepchar)
 
 	retvalStr = top + bottom; // final QString concatanation to combine
 	return retvalStr; // returns the final string for printing
+	*/
+	
 
 }
