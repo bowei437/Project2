@@ -11,7 +11,7 @@
 #define LIBRARYUI_H
 
 #include "library.h"
-
+#include "totalui.h"
 
 
 class LibraryUI
@@ -26,19 +26,18 @@ class LibraryUI
         void remove();
         void save();
         void list();
-        QStringList promptRefItem();
-        QStringList promptBook();
-        QStringList promptReferenceBook();
-        QStringList promptTextBook();
-        QStringList promptDVD();
-        QStringList promptFilm();
-        QStringList promptDataBase();
+        //QStringList promptRefItem();
+        //QStringList promptBook();
+        //QStringList promptReferenceBook();
+        //QStringList promptTextBook();
+        //QStringList promptDVD();
+        //QStringList promptFilm();
+        //QStringList promptDataBase();
         Choices nextTask();
         void prepareToQuit(bool saved);
 
 	private:
 	Library* m_Lib;
-
 
 };
 
