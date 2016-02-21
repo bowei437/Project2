@@ -5,7 +5,7 @@
 #include <QString>
 #include <QStringList>
 
-                                                                                          
+//start id=refbaseclassdef                                                                                           
 class RefItem {                                                                              
 public:   
    virtual ~RefItem();
@@ -18,11 +18,13 @@ public:
 protected:
    RefItem(QString type, QString isbn, QString title, int numCopies=1);
    RefItem(QStringList& proplist);
+
 private:                                                                                     
    QString m_ItemType, m_ISBN, m_Title;
    int m_NumberOfCopies;
 };
-
+//end
+//start id=refderiveddefs
 class Book : public RefItem {
 public:
    Book(QString type, QString isbn, QString title, QString author, 
@@ -51,7 +53,7 @@ public:
 private:
    RefCategory m_Category;
 };
-
+//end
 class TextBook : public Book {
 public:
    TextBook(QString type, QString isbn, QString title, QString author, 
@@ -118,6 +120,7 @@ private:
    Library& operator=(const Library&);
    RefItem* findRefItem(QString isbn);
 };
+
 
 #endif
 

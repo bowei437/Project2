@@ -56,7 +56,6 @@ Book::Book(QStringList& plst) : RefItem(plst), m_Author(plst.takeFirst()),
 { }
 
 
-
 QString Book::toString(QString sep) const {
    return QString("%1%2%3%4%5%6%7").arg(RefItem::toString(sep)).arg(sep)
                .arg(m_Author).arg(sep).arg(m_Publisher).arg(sep)
@@ -85,7 +84,6 @@ ReferenceBook::ReferenceBook(QString type, QString isbn, QString title,
 ReferenceBook::ReferenceBook(QStringList& plst) : Book(plst), 
                m_Category(static_cast<RefCategory>(plst.takeFirst().toInt()))
 { }
-
 
 
 QString ReferenceBook::toString(QString sep) const {
@@ -212,6 +210,7 @@ QString DataBase::getDBProtocol() const {
    return m_DBProtocol;
 }
 
+
 Library::~Library() {
    qDeleteAll(*this);
    clear();
@@ -244,7 +243,7 @@ int Library::removeRefItem(QString isbn) {
    RefItem* ref(findRefItem(isbn));
    int numCopies(-1);
    if(ref) {
-      numCopies = ref->getNumberOfCopies() - 1;
+      numCopies = ref->getNumberOfCopies();
       if(numCopies== 0) {
          removeAll(ref);
          delete ref;
