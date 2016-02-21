@@ -38,7 +38,6 @@ int main(int argc, char *argv[])
     FilmList listfilm; // here
     
 
-
         // Initializes variables to store Educational Class objects
     QString ed_subject;
     Grade ed_grade;
@@ -53,12 +52,13 @@ int main(int argc, char *argv[])
     MPAARatings en_rtng;
 
     while(1) {
-        outS << ADD_FILM << " - Add a film.\n"
+        outS << "\n" << " -- Main Menu --" << "\n"
+             << ADD_FILM << " - Add a film.\n"
              << REMOVE_FILM << " - Remove a film.\n"
              << GET_ID << " - Get Film ID by searching Title.\n"
              << FIND_FILM << " - Get Film Title by searching ID.\n"
              << LIST << " - List all Films .\n"
-              << QUIT << " - Quit Program .\n"
+              << QUIT << " - Quit Program .\n\n"
              << "Your choice(#): " << flush;
         sel_choice = inS.readLine().toInt();
         select = static_cast<menuChoice>(sel_choice);
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
             outS << " 2 -- Educational Film" << endl;
             outS << " 3 -- Entertainment Film" << endl;
 
-            outS << "Your choice(#): " << flush;
+            outS << "\n" << "Your choice(#): " << flush;
             filmchoice = inS.readLine().toInt();
             Film* newFilm;
             
@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
         }
             break;
         case GET_ID: {
-            outS << "\n" << "Enter the Films Title to get ID#:" << flush;
+            outS << "\n" << "Enter the Films Title to get ID#: " << flush;
             QStringList searchList;
             lookfortitle = inS.readLine();
 
@@ -203,9 +203,11 @@ int main(int argc, char *argv[])
         }
             break;
         case FIND_FILM: {
-            outS << "\n" << "Enter the Films ID# to get Title Name:" << flush;
+            outS << "\n" << "Enter the Films ID# to get Title Name: " << flush;
+           // QString findadder;
 
             lookforID = inS.readLine();
+            //findadder += (listfilm.findFilm)
             outS << listfilm.findFilm(lookforID)->toString(true, "\n");
             //Film* newFilm = listfilm.findFilm(lookforID);
             //QString fin_out = newFilm->toString(true, "\n");
@@ -214,13 +216,13 @@ int main(int argc, char *argv[])
         }
             break;
         case LIST: {
-            outS << "Printing all films" << endl;
+            outS << "\n" << "Printing all films" << endl;
             outS << listfilm.toString() << endl;
 
         }
             break;
         case QUIT: {
-            outS << "Exiting Program" << endl;
+            outS << "\n" << "Exiting Program" << endl;
             exit(0);
 
         }    

@@ -12,9 +12,9 @@
 
 Film::Film(QString id, QString title, QString dir, quint32 len, QDate relDate)
     : m_FilmID(id), m_Title(title), m_Director(dir), m_FilmLength(len), m_ReleaseDate(relDate) {
-	qDebug() << "	Debug: Film Constructor" << endl;
+	//qDebug() << "	Debug: Film Constructor" << endl;
 
-	qDebug() << "Output of Film Constructor is: " << m_FilmID << m_Title << m_Director << m_FilmLength << m_ReleaseDate << endl;
+	//qDebug() << "Output of Film Constructor is: " << m_FilmID << m_Title << m_Director << m_FilmLength << m_ReleaseDate << endl;
 	}
 /*
 Film::Film(QString id, QString title, QString dir, quint32 len, QDate relDate)
@@ -71,23 +71,8 @@ Film::Film(QStringList propList)
 QString Film::toString(bool labeled, QString sepchar)
 {
 	
-	qDebug() << "	Debug: Film toString" << endl;
-	/*
-	if (labeled) {
-        return
-        QString("%1%2%3%4%5%6%7%8%9%10%11%12").arg("Film").arg(sepchar).arg(m_FilmID).arg(sepchar).arg(m_Title)
-                                              .arg(sepchar).arg(m_Director).arg(sepchar)
-                                              .arg(m_FilmLength).arg(sepchar).arg(m_ReleaseDate.toString("yyyy-MM-dd"))
-                                              .arg(sepchar);
-    }
-    else {
-        return
-        QString("%1%2%3%4%5%6%7%8%9%10").arg(m_FilmID).arg(sepchar).arg(m_Title)
-                                        .arg(sepchar).arg(m_Director).arg(sepchar)
-                                        .arg(m_FilmLength).arg(sepchar).arg(m_ReleaseDate.toString("yyyy-MM-dd"))
-                                        .arg(sepchar);
-    }
-	*/
+	//qDebug() << "	Debug: Film toString" << endl;
+
 	
 	QString retvalStr;
 	// QString top/bottom used to concatante string outputs
@@ -103,7 +88,7 @@ QString Film::toString(bool labeled, QString sepchar)
 
 	if (labeled == true) // sees that output is to be labeled
 	{	
-		top = "ID: " + m_FilmID + sepchar + "Title: " + m_Title + sepchar + "Director: " + m_Director + sepchar + "Runtime: "; 
+		top = "Film" + sepchar + "ID: " + m_FilmID + sepchar + "Title: " + m_Title + sepchar + "Director: " + m_Director + sepchar + "Runtime: "; 
 		bottom = convert_num + sepchar + "Released: " + convert_date + sepchar;
 
 	}
@@ -117,37 +102,18 @@ QString Film::toString(bool labeled, QString sepchar)
 	retvalStr = top + bottom; // final QString concatanation to combine
 	return retvalStr; // returns the final string for printing
 	
-	
-	/*
-	QString retString;
-    if(labeled) {
-        retString = "ID: " + m_FilmID + sepchar
-                + "Title: " + m_Title + sepchar
-                + "Director: " + m_Director + sepchar
-                + "Length (min): " + QString::number(m_FilmLength) + sepchar
-                + "Release Date: " + m_ReleaseDate.toString("yyyy-MM-dd") + sepchar;
-    }
-    else {
-        retString = m_FilmID + sepchar
-                + m_Title + sepchar
-                + m_Director + sepchar
-                + m_FilmLength + sepchar
-                + m_ReleaseDate.toString("yyyy-MM-dd") + sepchar;
-    }
 
-    return retString;
-    */
 
 }
 
 QString Film::giveTitle()
 {
-	qDebug() << "	Debug: Film giveTitle" << endl;
+	//qDebug() << "	Debug: Film giveTitle" << endl;
 	return m_Title;
 }
 
 QString Film::getID() {
-     qDebug() << "  DEBUG: Film getID" << endl;
+     //qDebug() << "  DEBUG: Film getID" << endl;
     return m_FilmID;
 }
 
