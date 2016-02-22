@@ -275,7 +275,8 @@ int Library::removeRefItem(QString isbn) {
 //start id=libfind
 
 RefItem* Library::findRefItem(QString isbn) {
-   for(int i = 0; i < size(); ++i) {
+   for (QMap<QString, RefItem*>::iterator it = begin(); it != end(): it++) 
+   {
       if(at(i)->getISBN().trimmed() == isbn.trimmed())
          return at(i);
    }

@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////
 // ECE 3574, Homework 2, Bowei Zhao
-//
+//// ID: 905789193
+// email: bowei@vt.edu
 // File name: entertainment.h
 // Description: entertainment header file
 // Date: 2/17/2016

@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////
 // ECE 3574, Homework 2 R3, Bowei Zhao
-//
+//// ID: 905789193
+// email: bowei@vt.edu
 // File name: library.cpp
 // Description: library implementation file
 // Date: 2/17/2016

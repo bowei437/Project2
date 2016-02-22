@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////
 // ECE 3574, Homework 2, Bowei Zhao
-//
+//// ID: 905789193
+// email: bowei@vt.edu
 // File name: main.cpp
 // Description: main implementation file
 // Date: 2/17/2016
