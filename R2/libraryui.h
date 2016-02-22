@@ -17,9 +17,10 @@
 class LibraryUI
 {
 	public:
-		enum Choices {READ=1, ADD=2, FIND=3, REMOVE=4, SAVE=5, LIST=6, QUIT=7};
-		LibraryUI(Library* lib);
-		void add(QStringList objdata);
+	enum Choices {READ=1, ADD=2, FIND=3, REMOVE=4, SAVE=5, LIST=6, QUIT=7};
+        Choices nextTask();
+	LibraryUI(Library* lib);
+	void add(QStringList objdata);
         void read();
         void enterData();
         QString find();
@@ -33,7 +34,6 @@ class LibraryUI
         QStringList promptDVD();
         QStringList promptFilm();
         QStringList promptDataBase();
-        Choices nextTask();
         void prepareToQuit(bool saved);
 
 	private:
