@@ -22,9 +22,9 @@ const QStringList TYPES = (QStringList() << "BOOK" << "REFERENCEBOOK"
 
 LibraryUI::Choices LibraryUI::nextTask()
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//    
-	//	Changed output text and formatting
+	//	No changes made from R2.
 
    int choice;
    QString response;
@@ -54,10 +54,10 @@ LibraryUI::LibraryUI(Library* lib)
 
 void LibraryUI::add(QStringList objdata)
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//
-	//    changed al references from lib.(function) to 
-	//	  a pointer of this -> to that class's function	
+	//   
+	//	 
 
 	outS << objdata.join("[::]") << endl;
 	QString type = objdata.first();
@@ -96,7 +96,7 @@ void LibraryUI::add(QStringList objdata)
 
 void LibraryUI::read()
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//    
 	//		Changed last else from add(lib, objdata)
 	//	  	to just objdata 
@@ -133,7 +133,7 @@ void LibraryUI::read()
 // CHANGE THIS
 void LibraryUI::enterData()
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//    
 	//	  Changed initial Question ask prompt
 	//
@@ -194,7 +194,7 @@ void LibraryUI::enterData()
 
 QString LibraryUI::find()
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//    
 	//	 Changed call of lib to a -> this
 	// 	 to get the correct Classes Item String 
@@ -215,7 +215,7 @@ QString LibraryUI::find()
 }
 void LibraryUI::remove()
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//    
 	//	  Removed find(lib) as find() already 
 	//	  A part of the function class
@@ -239,7 +239,7 @@ void LibraryUI::remove()
 }
 void LibraryUI::save()
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//    
 	//	  Changed call of lib to a -> this
 	// 	  to get the correct Classes toString
@@ -254,7 +254,7 @@ void LibraryUI::save()
 
 void LibraryUI::list()
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//    
 	//	  Changed call of lib to a -> this
 	// 	  to get the correct Classes toString  
@@ -265,7 +265,7 @@ void LibraryUI::list()
 
 void LibraryUI::prepareToQuit(bool saved)
 {
-	//  -------- Modification Changes -----------
+	//  -------- Modification Changes from R2 -----------
 	//    
 	//	 Removed save(lib) as save()
 	//	 is already a function within class
