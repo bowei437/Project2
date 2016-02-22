@@ -48,10 +48,36 @@ QString Educational::toString(bool labeled, QString sepchar)
 
 	if (labeled == true)
 	 {
+	 	QString outgrade;
+	 	if (m_GradeLevel == 1)
+	 	{
+	 		outgrade = "First";
+	 	}
+	 	else if (m_GradeLevel == 2)
+	 	{
+	 		outgrade = "Second";
+	 	}
+	 	else if (m_GradeLevel == 3)
+	 	{
+	 		outgrade = "Third";
+	 	}
+	 	else if (m_GradeLevel == 4)
+	 	{
+	 		outgrade = "Fourth";
+	 	}
+	 	else if (m_GradeLevel == 5)
+	 	{
+	 		outgrade = "Fifth";
+	 	}
+	 	else
+	 	{
+	 		outgrade = "All";
+	 	}
+
         return
-        QString("%1%2%3%4%5%6%7%8").arg("Education").arg(sepchar).arg(Film::toString(labeled, sepchar))
-                                   .arg(sepchar).arg(m_Subject).arg(sepchar).arg(m_GradeLevel)
-                                   .arg(sepchar);
+        QString("%1%2%3%4%5%6%7%8").arg("Educational ").arg(Film::toString(labeled, sepchar))
+                                   .arg("Subject: ").arg(m_Subject).arg(sepchar)
+                                   .arg("Grade: ").arg(outgrade).arg(sepchar);
     }
 
     else
@@ -101,4 +127,13 @@ QString Educational::toString(bool labeled, QString sepchar)
     return retString;
 	*/
 
+}
+
+QString Educational::giveSub()
+{
+	return m_Subject;
+}
+int Educational::giveGrade()
+{
+	return m_GradeLevel;
 }

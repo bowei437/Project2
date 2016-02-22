@@ -57,8 +57,8 @@ int main(int argc, char *argv[])
              << REMOVE_FILM << " - Remove a film.\n"
              << GET_ID << " - Get Film ID by searching Title.\n"
              << FIND_FILM << " - Get Film Title by searching ID.\n"
-             << LIST << " - List all Films .\n"
-              << QUIT << " - Quit Program .\n\n"
+             << LIST << " - List all Films.\n"
+              << QUIT << " - Quit Program.\n\n"
              << "Your choice(#): " << flush;
         sel_choice = inS.readLine().toInt();
         select = static_cast<menuChoice>(sel_choice);
@@ -104,6 +104,7 @@ int main(int argc, char *argv[])
             
             //qDebug() << "Output of add function is: " << f_id << f_title << f_dir << f_len << f_relDate << flush;
             int filmchoice;
+            int matchv; // sees if duplicates are there
             outS << "\n" << "Enter the # corresponding to the type of film this is: "<< endl;
             outS << " 1 -- General Film" << endl;
             outS << " 2 -- Educational Film" << endl;
@@ -120,28 +121,28 @@ int main(int argc, char *argv[])
                 outS << "Your choice(#): " << flush;
                 filmchoice = inS.readLine().toInt();
             }
+            int tm_grade=0, tm_type=0, tm_rtng=0;// stores temporary integer for conversion
 
             if (filmchoice == 1)
             {
-                newFilm = new Film(f_id, f_title, f_dir, f_len, f_relDate);
-                
+                    newFilm = new Film(f_id, f_title, f_dir, f_len, f_relDate);
             }
             else if (filmchoice == 2)
             {
-                int tempInt;// stores temporary integer for conversion
-                outS << "\n" <<"Please input the film's subject: " << flush;
+                
+                outS << "\n" <<"Please input the film's subject matter: " << flush;
                 ed_subject = inS.readLine();
 
-                outS << "\n" <<"Please input the film's Grade Level intent (1, 2, 3, 4, 5): " << flush;
-                tempInt = inS.readLine().toInt();
-                while ((tempInt == 0) || (tempInt < 1) || (tempInt > 5))
+                outS << "\n" <<"Please input the film's Grade Level intent by number in paranthesis ( First(1), Second(2), Third(3), Fourth(4), Fifth(5) ): " << flush;
+                tm_grade = inS.readLine().toInt();
+                while ((tm_grade == 0) || (tm_grade < 1) || (tm_grade > 5))
                 {
                     errS << "Invalid entry! Please provide a number integer from 1 to 5 as input" << endl;
-                    outS << "\n" <<"Please input the film's Grade Level intent (1, 2, 3, 4, 5): " << flush;
-                    tempInt = inS.readLine().toInt();
+                    outS << "\n" <<"Please input the film's Grade Level intent by number in paranthesis ( First(1), Second(2), Third(3), Fourth(4), Fifth(5) ): " << flush;
+                    tm_grade = inS.readLine().toInt();
                 }
 
-                ed_grade = static_cast<Grade>(tempInt);
+                ed_grade = static_cast<Grade>(tm_grade);
 
                 newFilm = new Educational(f_id, f_title, f_dir, f_len, f_relDate, ed_subject, ed_grade);
                 //listfilm.addFilm(newFilm);
@@ -151,33 +152,46 @@ int main(int argc, char *argv[])
             }
             else if (filmchoice == 3)
             {
-                int tempInt2; // stores temporary integer for conversion
                 outS << "\n" <<"Please input the film's FilmType by number in paranthesis( Action(1), Comedy(2), Scifi(3), Horror(4) ): " << flush;
-                tempInt2 = inS.readLine().toInt();
-                while ((tempInt2 == 0) || (tempInt2 < 1) || (tempInt2 > 4))
+                tm_type = inS.readLine().toInt();
+                while ((tm_type == 0) || (tm_type < 1) || (tm_type > 4))
                 {
                     errS << "Invalid entry! Please provide a number integer from 1 to 4 as input" << endl;
                     outS << "\n" <<"Please input the film's FilmType by number in paranthesis( Action(1), Comedy(2), Scifi(3), Horror(4) ): " << flush;
-                    tempInt2 = inS.readLine().toInt();
+                    tm_type = inS.readLine().toInt();
                 }
-                en_type = static_cast<FilmTypes>(tempInt2);
+                en_type = static_cast<FilmTypes>(tm_type);
 
                 outS << "\n" <<"Please input the film's MPAA Rating by number in paranthesis( G(1), PG(2), PG-13(3), R(4) ): " << flush;
-                tempInt2 = inS.readLine().toInt();
-                while ((tempInt2 == 0) || (tempInt2 < 1) || (tempInt2 > 4))
+                tm_rtng = inS.readLine().toInt();
+                while ((tm_rtng == 0) || (tm_rtng < 1) || (tm_rtng > 4))
                 {
                     errS << "Invalid entry! Please provide a number integer from 1 to 4 as input" << endl;
                     outS << "\n" <<"Please input the film's MPAA Rating by number in paranthesis( G(1), PG(2), PG-13(3), R(4) ): " << flush;
-                    tempInt2 = inS.readLine().toInt();
+                    tm_rtng = inS.readLine().toInt();
                 }
-                en_rtng = static_cast<MPAARatings>(tempInt2);
+                en_rtng = static_cast<MPAARatings>(tm_rtng);
 
                 newFilm = new Entertainment(f_id, f_title, f_dir, f_len, f_relDate, en_type, en_rtng);
                 //listfilm.addFilm(newFilm);
                 //qDebug() << "Output of add entertainment function is: " << f_id << f_title << f_dir << f_len << f_relDate << en_type <<en_rtng << flush;
 
             }
-            listfilm.addFilm(newFilm);
+
+            matchv = listfilm.duplicate(f_title, f_dir, f_len, f_relDate);
+            if (matchv == 1)
+            {
+                errS << "\n" << "Film is a duplicate of a current entry. It will not be added.\nReturning to main menu" << endl;
+            }
+
+            if (matchv == 0)
+            {   
+                outS << "\n" <<"The film has been successfully added" << endl;
+                listfilm.addFilm(newFilm);
+            }
+
+            
+
         }
             break;
         case REMOVE_FILM: {
@@ -199,16 +213,53 @@ int main(int argc, char *argv[])
                 outS << "\n" << "The search " << lookfortitle << " has ID# of " <<
                 searchList.at(i) << endl;
             }
+            /*
+            if (searchList.takeFirst().isEmpty())
+            {
+                outS << "\n" << " -- The film " << lookfortitle << " does not exist" << endl;
+                outS << "You need to provide the exact name (case-sensitive)\n"
+                    << "Exiting to main menu now" << endl;
+            }
+            else
+            {
+                for (int i=0; i< searchList.size(); i++)
+                {
+                    outS << "\n" << "The search " << lookfortitle << " has ID# of " <<
+                    searchList.at(i) << endl;
+                }
+            }
+            */
+
 
         }
             break;
         case FIND_FILM: {
-            outS << "\n" << "Enter the Films ID# to get Title Name: " << flush;
+            outS << "\n" << "Enter the Films ID# to get details: " << flush;
            // QString findadder;
 
             lookforID = inS.readLine();
+            while ( (lookforID.isEmpty()) || (lookforID.isNull()) )
+            {
+                outS << "\n" << " -- Input is empty or not valid.\nTryAgain" << endl;
+                outS << "\n" << "Enter the Films ID# to get details: " << flush;
+                lookforID = inS.readLine();
+
+            }
+
+            if (listfilm.checkValid(lookforID) == 1)
+            {
+                // if id exists through checkvalid, then print it.
+                outS << "\n" << listfilm.findFilm(lookforID)->toString(true, "\n");
+            }
+            else
+            {
+                outS << "\n" << " -- Film of ID# " << lookforID << " does not exist."
+                    << "\n Exiting back to main menu now." << endl;
+            }
+
+
             //findadder += (listfilm.findFilm)
-            outS << listfilm.findFilm(lookforID)->toString(true, "\n");
+            
             //Film* newFilm = listfilm.findFilm(lookforID);
             //QString fin_out = newFilm->toString(true, "\n");
             //outS << fin_out <<endl;
@@ -216,9 +267,16 @@ int main(int argc, char *argv[])
         }
             break;
         case LIST: {
-            outS << "\n" << "Printing all films" << endl;
-            outS << listfilm.toString() << endl;
-
+            if (listfilm.toString().isEmpty())
+            {
+                outS << "\n -- No Films in database to print. Please add films and try again. -- " << endl;
+            }
+            else
+            {
+                outS << "\n" << "Printing all films with [::] label: \n" << endl;
+                outS << listfilm.toString() << endl;
+            }
+            
         }
             break;
         case QUIT: {

@@ -50,10 +50,54 @@ QString Entertainment::toString(bool labeled, QString sepchar)
 	//qDebug() << "	Debug: Entertainment toString" << endl;
 	
 	if (labeled == true)
-	{
+	{	QString outType, outRate;
+
+		if (m_Rating == 1)
+		{
+			outRate = "G";
+		}
+		else if (m_Rating == 2)
+		{
+			outRate = "PG";
+		}
+		else if (m_Rating == 3)
+		{
+			outRate = "PG-13";
+		}
+		else if (m_Rating == 4)
+		{
+			outRate = "R";
+		}
+		else
+		{
+			outRate = "All Ages";
+		}
+
+		if (m_Type == 1)
+		{
+			outType = "Action";
+		}
+		else if (m_Type == 2)
+		{
+			outType = "Comedy";
+		}
+		else if (m_Type == 3)
+		{
+			outType = "Scifi";
+		}
+		else if (m_Type == 4)
+		{
+			outType = "Horror";
+		}
+		else
+		{
+			outType = "All Genres";
+		}
+
         return
-        QString("%1%2%3%4%5%6%7%8").arg("Entertainment").arg(sepchar).arg(Film::toString(labeled, sepchar))
-                                   .arg(sepchar).arg(m_Rating).arg(sepchar).arg(m_Type).arg(sepchar);
+        QString("%1%2%3%4%5%6%7%8").arg("Entertainment ").arg(Film::toString(labeled, sepchar))
+                                   .arg("MPAARating: ").arg(outRate).arg(sepchar)
+                                   .arg("FilmType: ").arg(outType).arg(sepchar);
     }
     else 
     {
@@ -86,4 +130,14 @@ QString Entertainment::toString(bool labeled, QString sepchar)
 	*/
 	
 
+}
+
+int Entertainment::giveType()
+{
+	return m_Type;
+}
+
+int Entertainment::giveRate()
+{
+	return m_Rating;
 }

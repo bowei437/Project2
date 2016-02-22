@@ -22,6 +22,8 @@ class Entertainment : public Film
 		Entertainment(QString id, QString title, QString dir, quint32 len, QDate relDate, FilmTypes type, MPAARatings rtng);
 		Entertainment(QStringList propList);
 		QString toString(bool labeled, QString sepchar);
+		int giveType();
+		int giveRate();
 	private:
 		FilmTypes m_Type;
 		MPAARatings m_Rating;

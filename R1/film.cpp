@@ -88,8 +88,8 @@ QString Film::toString(bool labeled, QString sepchar)
 
 	if (labeled == true) // sees that output is to be labeled
 	{	
-		top = "Film" + sepchar + "ID: " + m_FilmID + sepchar + "Title: " + m_Title + sepchar + "Director: " + m_Director + sepchar + "Runtime: "; 
-		bottom = convert_num + sepchar + "Released: " + convert_date + sepchar;
+		top = "Film " + sepchar + "ID: " + m_FilmID + sepchar + "Title: " + m_Title + sepchar + "Director: " + m_Director + sepchar; 
+		bottom = "Runtime: " + convert_num + " minutes" + sepchar + "Released: " + convert_date + sepchar;
 
 	}
 	else if (labeled == false) // if it doesn't want labeled output
@@ -117,3 +117,15 @@ QString Film::getID() {
     return m_FilmID;
 }
 
+QString Film::giveDir()
+{
+	return m_Director;
+}
+quint32 Film::giveLen()
+{
+	return m_FilmLength;
+}
+QDate Film::giveDate()
+{
+	return m_ReleaseDate;
+}

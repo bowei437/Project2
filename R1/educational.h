@@ -20,6 +20,8 @@ class Educational : public Film
 		Educational(QString id, QString title, QString dir, quint32 len, QDate relDate, QString subject, Grade grade);
 		Educational(QStringList propList);
 		QString toString(bool labeled, QString sepchar);
+		QString giveSub();
+		int giveGrade();
 
 	private:
 		QString m_Subject;

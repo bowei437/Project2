@@ -22,6 +22,7 @@ class FilmList : public QList<Film*>
 		void addFilm(Film* film);
 		void removeFilm(QString filmID);
 		int checkValid(QString c_id="", QString c_title="", QString c_dir="", QString c_len="", QString c_relDate="");
+		int duplicate(QString d_title, QString d_dir, int d_len, QDate d_relDate);
 
 	private:
 		QList<Film*> q_list;
